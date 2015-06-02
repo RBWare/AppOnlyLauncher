@@ -48,7 +48,11 @@ public class LauncherActivity extends FragmentActivity {
         final WallpaperManager wallpaperManager = WallpaperManager.getInstance(this);
         final Drawable wallpaperDrawable = wallpaperManager.getDrawable();
         ((LinearLayout)findViewById(R.id.main_container)).setBackground(wallpaperDrawable);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
         setupViews();
     }
 
@@ -60,6 +64,7 @@ public class LauncherActivity extends FragmentActivity {
 
     private void setupViews(){
 
+        mApplicationList.clear();
         mPackageManager = getPackageManager();
         ITEMS_PER_PAGE = getResources().getInteger(R.integer.number_of_icons);
 
