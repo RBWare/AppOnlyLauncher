@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">App Only Launcher</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="set_wallpaper">Set Wallpaper</string>
+    <string name="show_hide_apps">Show / Hide Apps *</string>
+    <string name="use_light_theme">Use Light Theme *</string>
+    <string name="adjust_font">Adjust Font *</string>
+    <string name="system_settings">System Settings</string>
+    <string name="about">About *</string>
 </resources>

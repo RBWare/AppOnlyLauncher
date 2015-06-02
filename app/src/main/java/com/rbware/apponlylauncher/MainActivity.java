@@ -1,37 +1,36 @@
 package com.rbware.apponlylauncher;
 
+import android.app.ActionBar;
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.WallpaperManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.GridLayout;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
-
 import com.viewpagerindicator.CirclePageIndicator;
-import com.viewpagerindicator.UnderlinePageIndicator;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
-public class LauncherActivity extends FragmentActivity {
+public class MainActivity extends AppCompatActivity {
 
     private ViewPager awesomePager;
     private PagerAdapter pm;
@@ -40,26 +39,39 @@ public class LauncherActivity extends FragmentActivity {
     private ArrayList<ApplicationItem> mApplicationList = new ArrayList<>();
     private int ITEMS_PER_PAGE;
 
+    /**
+     * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
+     */
+    private NavigationDrawerFragment mNavigationDrawerFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_launcher);
+        setContentView(R.layout.activity_main);
 
-        final WallpaperManager wallpaperManager = WallpaperManager.getInstance(this);
-        final Drawable wallpaperDrawable = wallpaperManager.getDrawable();
-        ((LinearLayout)findViewById(R.id.main_container)).setBackground(wallpaperDrawable);
+        mNavigationDrawerFragment = (NavigationDrawerFragment)
+                getFragmentManager().findFragmentById(R.id.navigation_drawer);
+
+        // Set up the drawer.
+        mNavigationDrawerFragment.setUp(
+                R.id.navigation_drawer,
+                (DrawerLayout) findViewById(R.id.drawer_layout));
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
+        final WallpaperManager wallpaperManager = WallpaperManager.getInstance(this);
+        final Drawable wallpaperDrawable = wallpaperManager.getDrawable();
+        ((FrameLayout)findViewById(R.id.container)).setBackground(wallpaperDrawable);
+
         setupViews();
     }
 
     @Override
     public void onBackPressed() {
-        // super.onBackPressed();
-        // NOTHING
+        // NOTHING!
     }
 
     private void setupViews(){
@@ -96,7 +108,7 @@ public class LauncherActivity extends FragmentActivity {
                 tempList.add(mApplicationList.get(x));
             }
 
-            gridFragments.add(new GridFragment(tempList, LauncherActivity.this));
+            gridFragments.add(new GridFragment(tempList, MainActivity.this));
         }
 
         pm = new PagerAdapter(getSupportFragmentManager(), gridFragments);
@@ -104,25 +116,6 @@ public class LauncherActivity extends FragmentActivity {
         // ViewPager Indicator
         CirclePageIndicator mIndicator = (CirclePageIndicator) findViewById(R.id.pagerIndicator);
         mIndicator.setViewPager(awesomePager);
-    }
-
-    private class PagerAdapter extends FragmentStatePagerAdapter {
-        private List<GridFragment> fragments;
-
-        public PagerAdapter(FragmentManager fm, List<GridFragment> fragments) {
-            super(fm);
-            this.fragments = fragments;
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return this.fragments.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return this.fragments.size();
-        }
     }
 
     private void addAppToArray(ResolveInfo appInfo){
@@ -138,8 +131,22 @@ public class LauncherActivity extends FragmentActivity {
         }
     }
 
-    private int itemsPerPage(){
-        // TODO - based on screen dimens eventually
-        return 20;
+    private class PagerAdapter extends FragmentStatePagerAdapter {
+        private List<GridFragment> fragments;
+
+        public PagerAdapter(android.support.v4.app.FragmentManager fm, List<GridFragment> fragments) {
+            super(fm);
+            this.fragments = fragments;
+        }
+
+        @Override
+        public android.support.v4.app.Fragment getItem(int position) {
+            return this.fragments.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return this.fragments.size();
+        }
     }
 }

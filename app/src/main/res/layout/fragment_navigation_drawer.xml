@@ -1,0 +1,106 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:choiceMode="singleChoice"
+    android:divider="@android:color/transparent"
+    android:dividerHeight="0dp"
+    android:background="#cccc"
+    android:orientation="vertical"
+    tools:context=".NavigationDrawerFragment"
+    >
+
+    <!-- Logo Placeholder -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="32dp"
+        android:src="@android:drawable/ic_menu_help"/>
+
+    <Button
+        android:id="@+id/button_set_wallpaper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:text="@string/set_wallpaper"
+        android:textColor="#0C0C0C"
+        android:layout_marginLeft="12dp"
+        android:gravity="left|center_vertical"
+        android:textAlignment="gravity"
+        />
+
+    <Button
+        android:id="@+id/button_show_hide_apps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:text="@string/show_hide_apps"
+        android:textColor="#0C0C0C"
+        android:layout_marginLeft="12dp"
+        android:gravity="left|center_vertical"
+        android:textAlignment="gravity"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="@string/use_light_theme"
+            android:textColor="#0C0C0C"
+            android:layout_marginLeft="12dp"
+            android:gravity="left|center_vertical"
+            android:textAlignment="gravity"
+            android:layout_weight="1"
+            />
+
+        <android.support.v7.widget.SwitchCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/switch_use_light_theme"
+            android:layout_margin="6dp"
+            android:padding="4dp"
+            />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_adjust_font"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:text="@string/adjust_font"
+        android:textColor="#0C0C0C"
+        android:layout_marginLeft="12dp"
+        android:gravity="left|center_vertical"
+        android:textAlignment="gravity"
+        />
+
+    <Button
+        android:id="@+id/button_system_settings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:text="@string/system_settings"
+        android:textColor="#0C0C0C"
+        android:layout_marginLeft="12dp"
+        android:gravity="left|center_vertical"
+        android:textAlignment="gravity"
+        />
+
+    <Button
+        android:id="@+id/button_about"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/about"
+        android:textColor="#0C0C0C"
+        android:layout_marginLeft="12dp"
+        android:gravity="left|center_vertical"
+        android:textAlignment="gravity"
+        />
+</LinearLayout>
