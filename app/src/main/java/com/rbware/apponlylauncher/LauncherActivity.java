@@ -133,7 +133,8 @@ public class LauncherActivity extends FragmentActivity {
         applicationItem.setIcon(appInfo.loadIcon(mPackageManager));
 
         if (applicationItem.getPackageName() != null) {
-            mApplicationList.add(applicationItem);
+            if (!applicationItem.getName().equals(getString(R.string.app_name)))
+                mApplicationList.add(applicationItem);
         }
     }
 
