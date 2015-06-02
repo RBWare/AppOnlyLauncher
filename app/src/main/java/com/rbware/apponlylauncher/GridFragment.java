@@ -2,7 +2,9 @@ package com.rbware.apponlylauncher;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -56,6 +58,14 @@ public class GridFragment extends Fragment {
                     onGridItemClick((GridView) parent, view, position, id);
                 }
             });
+
+            mGridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                    showApplicationDataIntent(gridItems.get(position).getPackageName());
+                    return true;
+                }
+            });
         }
     }
 
@@ -65,5 +75,22 @@ public class GridFragment extends Fragment {
                 .getLaunchIntentForPackage(
                         gridItems.get(position).getPackageName());
         getActivity().startActivity(intent);
+    }
+
+    private void showApplicationDataIntent(String packageName){
+        try {
+            //Open the specific App Info page:
+            Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+            intent.setData(Uri.parse("package:" + packageName));
+            startActivity(intent);
+
+        } catch ( ActivityNotFoundException e ) {
+            //e.printStackTrace();
+
+            //Open the generic Apps page:
+            Intent intent = new Intent(android.provider.Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS);
+            startActivity(intent);
+
+        }
     }
 }

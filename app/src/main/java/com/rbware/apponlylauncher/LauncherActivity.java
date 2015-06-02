@@ -72,7 +72,6 @@ public class LauncherActivity extends FragmentActivity {
         };
 
         Collections.sort(mApplicationList);
-        Collections.sort(mApplicationList);
 
         awesomePager = (ViewPager) findViewById(R.id.pager);
 
@@ -100,8 +99,6 @@ public class LauncherActivity extends FragmentActivity {
         // ViewPager Indicator
         CirclePageIndicator mIndicator = (CirclePageIndicator) findViewById(R.id.pagerIndicator);
         mIndicator.setViewPager(awesomePager);
-//        mIndicator.setViewPager(awesomePager);
-
     }
 
     private class PagerAdapter extends FragmentStatePagerAdapter {
