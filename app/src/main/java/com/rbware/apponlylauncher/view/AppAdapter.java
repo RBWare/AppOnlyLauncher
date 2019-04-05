@@ -1,4 +1,4 @@
-package com.rbware.apponlylauncher;
+package com.rbware.apponlylauncher.view;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,11 +8,12 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.rbware.apponlylauncher.model.ApplicationItem;
+import com.rbware.apponlylauncher.R;
+
 import java.util.ArrayList;
 
-public class GridAdapter extends BaseAdapter {
-
-    private Context context;
+public class AppAdapter extends BaseAdapter {
 
     public class ViewHolder {
         public ImageView imageView;
@@ -22,11 +23,10 @@ public class GridAdapter extends BaseAdapter {
     private ArrayList<ApplicationItem> items;
     private LayoutInflater mInflater;
 
-    public GridAdapter(Context context, ArrayList<ApplicationItem> locations) {
+    public AppAdapter(Context context, ArrayList<ApplicationItem> locations) {
 
         mInflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.context = context;
         items = locations;
 
     }

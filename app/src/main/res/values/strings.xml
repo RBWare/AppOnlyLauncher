@@ -3,4 +3,6 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <string name="battery_weather_location">%1$s | %2$s | %3$s</string>
 </resources>
